@@ -109,7 +109,7 @@ function connect() {
       let dy = particleArray[a].y - particleArray[b].y;
       let distance = Math.sqrt(dx * dx + dy * dy);
 
-      opacityValue = 1 - distance / 50;
+      opacityValue = 0.1;
       ctx.strokeStyle = "rgba(255,255,255," + opacityValue + ")";
       if (distance < 20) {
         ctx.lineWidth = 2;
