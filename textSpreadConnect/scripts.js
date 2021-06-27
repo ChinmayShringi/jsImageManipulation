@@ -107,7 +107,7 @@ function connect() {
       let dx = particleArray[a].x - particleArray[b].x;
       let dy = particleArray[a].y - particleArray[b].y;
       let distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance < 100) {
+      if (distance < 20) {
         ctx.strokeStyle = "white";
         ctx.lineWidth = 2;
         ctx.beginPath();
