@@ -3,6 +3,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let particleArray = [];
+let adjustX = 10;
+let adjustY = 10;
 // handle mouse
 const mouse = {
   x: null,
@@ -19,7 +21,7 @@ ctx.font = "30px Verdana";
 ctx.fillText("A", 0, 40);
 ctx.strokeStyle = "white";
 // ctx.strokeRect(0, 0, 100, 100);
-const data = ctx.getImageData(0, 0, 100, 100);
+const textCoordinates = ctx.getImageData(0, 0, 100, 100);
 
 class Particle {
   constructor(x, y) {
@@ -65,11 +67,24 @@ class Particle {
 
 function init() {
   particleArray = [];
-  for (let i = 0; i < 10; i++) {
-    let x = Math.random() * 500;
-    let y = Math.random() * 500;
-    particleArray.push(new Particle(x, y));
+  for (let y = 0, y2 = textCoordinates.height; y < y2; y++) {
+    for (let x = 0, x2 = textCoordinates.width; x < x2; x++) {
+      // check for opacity
+      if (
+        textCoordinates.data[y * 4 * textCoordinates.width + x * 4 + 3] > 128
+      ) {
+        let postitionX = x + adjustX;
+        let postitionY = y + adjustY;
+        particleArray.push(new Particle(postitionX * 10, postitionY * 10));
+      }
+    }
   }
+
+  // for (let i = 0; i < 10; i++) {
+  //   let x = Math.random() * 500;
+  //   let y = Math.random() * 500;
+  //   particleArray.push(new Particle(x, y));
+  // }
   // particleArray.push(new Particle(50, 50));
   // particleArray.push(new Particle(80, 50));
 }
