@@ -12,4 +12,5 @@
   width: 500px;
   height: 706px;
   transform: translate(-50%, -50%);
+  filter: blur(2px) contrast(2);
 }

@@ -62,8 +62,8 @@ image1.addEventListener("load", () => {
       this.x = Math.random() * canvas.width;
       this.y = 0;
       this.speed = 0;
-      this.velocity = Math.random() * 0.5;
-      this.size = Math.random() * 1.5 + 1;
+      this.velocity = Math.random() * 5;
+      this.size = Math.random() * 1.5 + 0.2;
       this.position1 = Math.floor(this.y);
       this.position2 = Math.floor(this.x);
       this.angle = 0;
@@ -79,28 +79,28 @@ image1.addEventListener("load", () => {
       }
       let movement = 2.5 - this.speed + this.velocity;
       this.angle += this.speed / 10;
-      this.size = this.speed * 1.5;
-      if (switcher == 1) {
-        ctx.globalCompositeOperation = "luminosity";
-      } else {
-        ctx.globalCompositeOperation = "soft-light";
-      }
-      if (counter % 22 == 0) {
-        this.x = Math.random() * canvas.width;
-        this.y = 0;
-      }
-
-      this.y += movement + Math.sin(this.angle) * 3;
-      this.x += movement + Math.cos(this.angle) * 3;
-      // this.y++;
-      // if (this.y >= canvas.height) {
-      //   this.y = 0;
+      this.size = this.speed * 2.5;
+      // if (switcher == 1) {
+      //   ctx.globalCompositeOperation = "luminosity";
+      // } else {
+      //   ctx.globalCompositeOperation = "soft-light";
+      // }
+      // if (counter % 22 == 0) {
       //   this.x = Math.random() * canvas.width;
+      //   this.y = 0;
       // }
-      // if (this.x >= canvas.width) {
-      //   this.x = 0;
-      //   this.y = Math.random() * canvas.height;
-      // }
+
+      this.x += movement + Math.sin(this.angle) * 2;
+      this.y -= movement;
+      // this.y++;
+      if (this.y <= 0) {
+        this.y = canvas.height;
+        this.x = Math.random() * canvas.width;
+      }
+      if (this.x >= canvas.width) {
+        this.x = 0;
+        this.y = Math.random() * canvas.height;
+      }
     }
     draw() {
       ctx.beginPath();
